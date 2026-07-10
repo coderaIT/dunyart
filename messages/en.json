@@ -1,0 +1,79 @@
+{
+  "site": {
+    "name": "Dünya Art",
+    "tagline": "Fine Art Carpets"
+  },
+  "nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "specialOffers": "Special Offers",
+    "newArrivals": "New Arrivals",
+    "search": "Search",
+    "contact": "Contact",
+    "admin": "Dashboard"
+  },
+  "home": {
+    "heroTitle": "Art Carpets That Tell a Story",
+    "heroSubtitle": "A carefully curated collection of the finest handmade and artistic carpets from around the world.",
+    "browseCategories": "Browse Categories",
+    "categoriesTitle": "Categories",
+    "categoriesSubtitle": "Explore our diverse collections",
+    "specialOffersTitle": "Special Offers",
+    "specialOffersSubtitle": "Distinctive pieces with exclusive offers",
+    "newArrivalsTitle": "New Arrivals",
+    "newArrivalsSubtitle": "The latest additions to our gallery",
+    "latestTitle": "Latest Added Carpets",
+    "latestSubtitle": "Our most recent additions to the collection",
+    "searchTitle": "Search for Carpets",
+    "searchSubtitle": "Find the perfect piece",
+    "contactTitle": "Contact Us",
+    "contactSubtitle": "We are here to help you",
+    "viewAll": "View All",
+    "noItems": "No items to display at the moment."
+  },
+  "rug": {
+    "categoryLabel": "Category",
+    "specialOffer": "Special Offer",
+    "newArrival": "New Arrival",
+    "featured": "Featured",
+    "relatedTitle": "Similar Carpets",
+    "backToCategory": "Back to Category",
+    "gallery": "Image Gallery"
+  },
+  "category": {
+    "itemsCount": "{count} items",
+    "empty": "No carpets in this category yet.",
+    "allCategories": "All Categories"
+  },
+  "search": {
+    "title": "Search for Carpets",
+    "placeholder": "Search by name or description...",
+    "button": "Search",
+    "resultsFor": "Search results for: {query}",
+    "resultsCount": "{count} results",
+    "noResults": "No results match your search.",
+    "startTyping": "Start typing to search our collection."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are happy to answer your questions and help you choose the right carpet.",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "address": "Address",
+    "addressValue": "Istanbul, Turkey",
+    "hours": "Working Hours",
+    "hoursValue": "Daily from 9 AM to 8 PM"
+  },
+  "footer": {
+    "about": "Dünya Art — a gallery specialized in artistic and luxury carpets from around the world.",
+    "quickLinks": "Quick Links",
+    "contactTitle": "Contact Information",
+    "rights": "All rights reserved."
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, we couldn't find the page you're looking for.",
+    "backHome": "Back to Home"
+  }
+}

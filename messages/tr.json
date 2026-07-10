@@ -1,0 +1,79 @@
+{
+  "site": {
+    "name": "Dünya Art",
+    "tagline": "Sanatsal Lüks Halılar"
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "categories": "Kategoriler",
+    "specialOffers": "Özel Teklifler",
+    "newArrivals": "Yeni Gelenler",
+    "search": "Ara",
+    "contact": "İletişim",
+    "admin": "Yönetim Paneli"
+  },
+  "home": {
+    "heroTitle": "Bir Hikaye Anlatan Sanatsal Halılar",
+    "heroSubtitle": "Dünyanın dört bir yanından özenle seçilmiş en kaliteli el yapımı ve sanatsal halılar koleksiyonu.",
+    "browseCategories": "Kategorilere Göz At",
+    "categoriesTitle": "Kategoriler",
+    "categoriesSubtitle": "Çeşitli koleksiyonlarımızı keşfedin",
+    "specialOffersTitle": "Özel Teklifler",
+    "specialOffersSubtitle": "Özel fırsatlarla seçkin parçalar",
+    "newArrivalsTitle": "Yeni Gelenler",
+    "newArrivalsSubtitle": "Galerimize en son eklenenler",
+    "latestTitle": "Son Eklenen Halılar",
+    "latestSubtitle": "Koleksiyona en son eklediklerimiz",
+    "searchTitle": "Halı Ara",
+    "searchSubtitle": "Mükemmel parçayı bulun",
+    "contactTitle": "İletişim",
+    "contactSubtitle": "Size yardımcı olmak için buradayız",
+    "viewAll": "Tümünü Gör",
+    "noItems": "Şu anda gösterilecek öğe yok."
+  },
+  "rug": {
+    "categoryLabel": "Kategori",
+    "specialOffer": "Özel Teklif",
+    "newArrival": "Yeni Geldi",
+    "featured": "Öne Çıkan",
+    "relatedTitle": "Benzer Halılar",
+    "backToCategory": "Kategoriye Dön",
+    "gallery": "Görsel Galerisi"
+  },
+  "category": {
+    "itemsCount": "{count} parça",
+    "empty": "Bu kategoride henüz halı yok.",
+    "allCategories": "Tüm Kategoriler"
+  },
+  "search": {
+    "title": "Halı Ara",
+    "placeholder": "İsim veya açıklamaya göre ara...",
+    "button": "Ara",
+    "resultsFor": "Arama sonuçları: {query}",
+    "resultsCount": "{count} sonuç",
+    "noResults": "Aramanızla eşleşen sonuç yok.",
+    "startTyping": "Koleksiyonumuzda arama yapmak için bir kelime yazın."
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Sorularınızı yanıtlamaktan ve doğru halıyı seçmenize yardımcı olmaktan memnuniyet duyarız.",
+    "phone": "Telefon",
+    "whatsapp": "WhatsApp",
+    "email": "E-posta",
+    "address": "Adres",
+    "addressValue": "İstanbul, Türkiye",
+    "hours": "Çalışma Saatleri",
+    "hoursValue": "Her gün 09:00 - 20:00"
+  },
+  "footer": {
+    "about": "Dünya Art — dünyanın dört bir yanından sanatsal ve lüks halılar konusunda uzmanlaşmış bir galeri.",
+    "quickLinks": "Hızlı Bağlantılar",
+    "contactTitle": "İletişim Bilgileri",
+    "rights": "Tüm hakları saklıdır."
+  },
+  "notFound": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Üzgünüz, aradığınız sayfayı bulamadık.",
+    "backHome": "Ana Sayfaya Dön"
+  }
+}

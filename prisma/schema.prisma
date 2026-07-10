@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id            String   @id @default(cuid())
+  nameAr        String
+  nameTr        String
+  nameEn        String
+  descriptionAr String?
+  descriptionTr String?
+  descriptionEn String?
+  slug          String   @unique
+  imageUrl      String?
+  imagePublicId String?
+  sortOrder     Int      @default(0)
+  isActive      Boolean  @default(true)
+
+  rugs Rug[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Rug {
+  id String @id @default(cuid())
+
+  nameAr String
+  nameTr String
+  nameEn String
+
+  descriptionAr String?
+  descriptionTr String?
+  descriptionEn String?
+
+  slug String @unique
+
+  isSpecialOffer Boolean @default(false)
+  isNewArrival   Boolean @default(false)
+  isFeatured     Boolean @default(false)
+  isActive       Boolean @default(true)
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  images RugImage[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RugImage {
+  id        String  @id @default(cuid())
+  imageUrl  String
+  publicId  String
+  sortOrder Int     @default(0)
+  isPrimary Boolean @default(false)
+
+  rugId String
+  rug   Rug   @relation(fields: [rugId], references: [id], onDelete: Cascade)
+}

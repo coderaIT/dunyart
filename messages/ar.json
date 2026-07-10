@@ -1,0 +1,79 @@
+{
+  "site": {
+    "name": "دنيا آرت",
+    "tagline": "سجاد فني فاخر"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "categories": "الأقسام",
+    "specialOffers": "العروض الخاصة",
+    "newArrivals": "وصل حديثًا",
+    "search": "بحث",
+    "contact": "تواصل معنا",
+    "admin": "لوحة التحكم"
+  },
+  "home": {
+    "heroTitle": "سجاد فني يروي حكاية",
+    "heroSubtitle": "مجموعة مختارة بعناية من أفخر أنواع السجاد اليدوي والفني من مختلف أنحاء العالم.",
+    "browseCategories": "تصفح الأقسام",
+    "categoriesTitle": "الأقسام",
+    "categoriesSubtitle": "اكتشف مجموعاتنا المتنوعة",
+    "specialOffersTitle": "العروض الخاصة",
+    "specialOffersSubtitle": "قطع مميزة بعروض حصرية",
+    "newArrivalsTitle": "وصل حديثًا",
+    "newArrivalsSubtitle": "أحدث الإضافات إلى معرضنا",
+    "latestTitle": "أحدث السجاد المضاف",
+    "latestSubtitle": "آخر ما أضفناه إلى المجموعة",
+    "searchTitle": "ابحث عن السجاد",
+    "searchSubtitle": "اعثر على القطعة المثالية",
+    "contactTitle": "تواصل معنا",
+    "contactSubtitle": "نحن هنا لمساعدتك",
+    "viewAll": "عرض الكل",
+    "noItems": "لا توجد عناصر لعرضها حاليًا."
+  },
+  "rug": {
+    "categoryLabel": "القسم",
+    "specialOffer": "عرض خاص",
+    "newArrival": "وصل حديثًا",
+    "featured": "مميز",
+    "relatedTitle": "سجاد مشابه",
+    "backToCategory": "العودة إلى القسم",
+    "gallery": "معرض الصور"
+  },
+  "category": {
+    "itemsCount": "{count} قطعة",
+    "empty": "لا يوجد سجاد في هذا القسم بعد.",
+    "allCategories": "كل الأقسام"
+  },
+  "search": {
+    "title": "البحث عن السجاد",
+    "placeholder": "ابحث بالاسم أو الوصف...",
+    "button": "بحث",
+    "resultsFor": "نتائج البحث عن: {query}",
+    "resultsCount": "{count} نتيجة",
+    "noResults": "لا توجد نتائج مطابقة لبحثك.",
+    "startTyping": "ابدأ بكتابة كلمة للبحث في مجموعتنا."
+  },
+  "contact": {
+    "title": "تواصل معنا",
+    "subtitle": "يسعدنا الرد على استفساراتك ومساعدتك في اختيار السجادة المناسبة.",
+    "phone": "الهاتف",
+    "whatsapp": "واتساب",
+    "email": "البريد الإلكتروني",
+    "address": "العنوان",
+    "addressValue": "إسطنبول، تركيا",
+    "hours": "ساعات العمل",
+    "hoursValue": "يوميًا من 9 صباحًا حتى 8 مساءً"
+  },
+  "footer": {
+    "about": "دنيا آرت — معرض متخصص بالسجاد الفني والفاخر من مختلف أنحاء العالم.",
+    "quickLinks": "روابط سريعة",
+    "contactTitle": "معلومات التواصل",
+    "rights": "جميع الحقوق محفوظة."
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "description": "عذرًا، لم نتمكن من العثور على الصفحة التي تبحث عنها.",
+    "backHome": "العودة إلى الرئيسية"
+  }
+}

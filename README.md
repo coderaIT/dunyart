@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dünya Art — سجاد فني / Art Carpets
 
-## Getting Started
+موقع سجاد فني متعدد اللغات (عربي / تركي / إنجليزي) مبني بـ Next.js، بدون أسعار أو
+سلة شراء أو دفع — عرض للسجاد فقط مع لوحة تحكم لإدارة الأقسام والسجاد.
 
-First, run the development server:
+A multilingual (Arabic / Turkish / English) art‑carpet showcase built with
+Next.js. No prices, cart, checkout, quantity or stock — just a beautiful gallery
+plus an admin dashboard to manage categories and rugs.
+
+## المميزات / Features
+
+- **ثلاث لغات** عربي `AR` (RTL) · تركي `TR` (LTR) · إنجليزي `EN` (LTR) عبر
+  [`next-intl`](https://next-intl.dev) مع زر تبديل واضح في الهيدر.
+- **روابط مترجمة**: `/ar`, `/tr`, `/en`, `/ar/categories/farsi`, ...
+- **أقسام الصفحة الرئيسية**: الكاتيجوريات، العروض الخاصة، وصل حديثًا، أحدث السجاد
+  المضاف، البحث، التواصل.
+- **صفحات**: تفاصيل السجادة مع معرض صور، صفحة القسم، العروض الخاصة، وصل حديثًا،
+  البحث، التواصل.
+- **لوحة تحكم** (`/ar/admin`): إضافة/تعديل/حذف الأقسام والسجاد، رفع عدة صور دفعة
+  واحدة، تحديد الصورة الرئيسية، إعادة الترتيب، والوسوم (عرض خاص / وصل حديثًا /
+  مميز / إظهار في الموقع).
+
+## التقنيات / Tech Stack
+
+- Next.js 16 (App Router) + React 19 + TypeScript
+- Tailwind CSS v4
+- next-intl (i18n + routing)
+- Prisma 6 + SQLite (تُخزَّن الصور محليًا في `public/uploads`)
+
+## التشغيل / Getting Started
 
 ```bash
+# 1. تثبيت الحزم
+npm install
+
+# 2. تجهيز قاعدة البيانات (SQLite)
+npm run db:push
+
+# 3. (اختياري) بيانات تجريبية
+npm run db:seed
+
+# 4. تشغيل بيئة التطوير
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ثم افتح `http://localhost:3000` (سيُعاد توجيهك إلى `/ar`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- الموقع: `/ar` · `/tr` · `/en`
+- لوحة التحكم: `/ar/admin`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## متغيرات البيئة / Environment
 
-## Learn More
+ملف `.env`:
 
-To learn more about Next.js, take a look at the following resources:
+```
+DATABASE_URL="file:./dev.db"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+بيانات التواصل (هاتف/واتساب/بريد) قابلة للتعديل في `lib/site.ts`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## البنية / Structure
 
-## Deploy on Vercel
+```
+app/
+└── [locale]/
+    ├── page.tsx                 # الصفحة الرئيسية
+    ├── categories/[slug]/       # صفحة القسم
+    ├── rugs/[slug]/             # صفحة السجادة
+    ├── special-offers/          # العروض الخاصة
+    ├── new-arrivals/            # وصل حديثًا
+    ├── search/                  # البحث
+    ├── contact/                 # التواصل
+    └── admin/                   # لوحة التحكم
+app/api/upload/                  # رفع/حذف الصور
+components/                      # مكوّنات الواجهة + مكوّنات الأدمن
+i18n/                            # إعداد next-intl (routing / request / navigation)
+lib/                             # prisma, queries, utils, site
+messages/                       # ترجمات ar / tr / en
+prisma/                         # schema.prisma + seed.ts
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ملاحظات / Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- تُرفع الصور وتُخزَّن في `public/uploads`. للنشر على منصات بلا تخزين دائم
+  (مثل Vercel) يُنصح لاحقًا بربط تخزين خارجي (Cloudinary/S3)؛ حقول
+  `publicId` جاهزة لذلك.
+- لا يوجد نظام مصادقة على `/admin` حاليًا — أضِف حماية قبل النشر العام.
