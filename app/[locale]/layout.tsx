@@ -4,6 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, localeDirections, type Locale } from "@/i18n/routing";
 import { Header } from "@/components/header";
+import { LocationMap } from "@/components/location-map";
 import { Footer } from "@/components/footer";
 import { ThemeScript } from "@/components/theme-script";
 import "../globals.css";
@@ -59,6 +60,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider>
           <Header locale={locale as Locale} />
           <main className="flex-1">{children}</main>
+          <LocationMap />
           <Footer />
         </NextIntlClientProvider>
       </body>

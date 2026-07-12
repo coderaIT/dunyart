@@ -7,8 +7,8 @@ import type { RugWithImages } from "@/lib/queries";
 import { RugCard } from "./rug-card";
 import { EmptyState } from "./rug-grid";
 
-/** 3 rows × 4 columns */
-export const GRID_PAGE_SIZE = 12;
+/** 1 row × 4 columns */
+export const GRID_PAGE_SIZE = 4;
 
 export function ExpandableRugGrid({
   rugs,

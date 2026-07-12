@@ -16,7 +16,7 @@ export async function Footer() {
   ];
 
   return (
-    <footer className="mt-24 border-t border-line bg-ink-soft">
+    <footer className="border-t border-line bg-ink">
       <div className="container-page grid gap-10 py-14 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-3">
@@ -61,7 +61,7 @@ export async function Footer() {
           <ul className="space-y-2 text-sm text-muted">
             <li>
               <span className="text-cream">{tContact("phone")}: </span>
-              <a href={`tel:${SITE.phone}`} dir="ltr" className="hover:text-cream">
+              <a href={`tel:${SITE.phoneTel}`} dir="ltr" className="hover:text-cream">
                 {SITE.phone}
               </a>
             </li>

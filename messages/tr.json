@@ -90,9 +90,12 @@
     "whatsapp": "WhatsApp",
     "email": "E-posta",
     "address": "Adres",
-    "addressValue": "İstanbul, Türkiye",
+    "addressValue": "Alaşarköy, 7. Asma Sk. NO: 9 D:1, 16245 Alaşar Osb/Osmangazi/Bursa, Türkiye",
     "hours": "Çalışma Saatleri",
-    "hoursValue": "Her gün 09:00 - 20:00"
+    "hoursValue": "Her gün 09:00 - 20:00",
+    "mapTitle": "Konumumuz",
+    "mapSubtitle": "Bursa Osmangazi’deki adresimize bekleriz.",
+    "openMap": "Haritada aç"
   },
   "footer": {
     "about": "Dünya Art — dünyanın dört bir yanından sanatsal ve lüks halılar konusunda uzmanlaşmış bir galeri.",

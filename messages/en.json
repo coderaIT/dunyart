@@ -90,9 +90,12 @@
     "whatsapp": "WhatsApp",
     "email": "Email",
     "address": "Address",
-    "addressValue": "Istanbul, Turkey",
+    "addressValue": "Alaşarköy, 7. Asma Sk. NO: 9 D:1, 16245 Alaşar Osb/Osmangazi/Bursa, Turkey",
     "hours": "Working Hours",
-    "hoursValue": "Daily from 9 AM to 8 PM"
+    "hoursValue": "Daily from 9 AM to 8 PM",
+    "mapTitle": "Our Location",
+    "mapSubtitle": "Visit us at our address in Bursa Osmangazi.",
+    "openMap": "Open in Maps"
   },
   "footer": {
     "about": "Dünya Art — a gallery specialized in artistic and luxury carpets from around the world.",

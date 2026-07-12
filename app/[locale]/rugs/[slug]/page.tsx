@@ -97,7 +97,7 @@ export default async function RugPage({ params }: Props) {
               {tContact("whatsapp")}
             </a>
             <a
-              href={`tel:${SITE.phone}`}
+              href={`tel:${SITE.phoneTel}`}
               className="rounded-full border border-line px-7 py-3 font-semibold text-cream transition-colors hover:border-olive hover:bg-panel"
             >
               {tContact("phone")}

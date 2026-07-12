@@ -21,7 +21,7 @@ export default async function ContactPage({ params }: Props) {
     {
       label: t("phone"),
       value: SITE.phone,
-      href: `tel:${SITE.phone}`,
+      href: `tel:${SITE.phoneTel}`,
       icon: <PhoneIcon />,
     },
     {

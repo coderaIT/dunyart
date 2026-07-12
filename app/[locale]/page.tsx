@@ -60,6 +60,9 @@ export default async function HomePage({
       </section>
 
       <div className="container-page space-y-24 py-20">
+        {/* Services — directly under hero */}
+        <ServicesSection />
+
         {/* Three category sections */}
         <div id="categories" className="scroll-mt-28 space-y-24">
           {categories.map((category) => {
@@ -112,7 +115,7 @@ export default async function HomePage({
             <ContactCard
               label={tContact("phone")}
               value={SITE.phone}
-              href={`tel:${SITE.phone}`}
+              href={`tel:${SITE.phoneTel}`}
             />
             <ContactCard
               label={tContact("whatsapp")}
@@ -134,9 +137,6 @@ export default async function HomePage({
             </Link>
           </div>
         </section>
-
-        {/* Services */}
-        <ServicesSection />
       </div>
     </div>
   );
