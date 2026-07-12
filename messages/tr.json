@@ -22,14 +22,43 @@
     "specialOffersSubtitle": "Özel fırsatlarla seçkin parçalar",
     "newArrivalsTitle": "Yeni Gelenler",
     "newArrivalsSubtitle": "Galerimize en son eklenenler",
-    "latestTitle": "Son Eklenen Halılar",
-    "latestSubtitle": "Koleksiyona en son eklediklerimiz",
+    "latestTitle": "Son Eklenenler",
+    "latestSubtitle": "Üç kategoriye en son eklenen görseller",
     "searchTitle": "Halı Ara",
     "searchSubtitle": "Mükemmel parçayı bulun",
     "contactTitle": "İletişim",
     "contactSubtitle": "Size yardımcı olmak için buradayız",
     "viewAll": "Tümünü Gör",
+    "showMore": "Daha fazla göster",
     "noItems": "Şu anda gösterilecek öğe yok."
+  },
+  "services": {
+    "title": "Hizmetlerimiz",
+    "ctaText": "Ürünlerimiz hakkında detaylı bilgi ayrıca Fiyat Teklifi almak İçin Bizimle İletişime Geçin!",
+    "ctaButton": "İletişim Bilgilerimiz",
+    "brandSubtitle": "Baskı & Tekstil",
+    "items": {
+      "printedFabric": {
+        "title": "Baskılı Kumaş",
+        "description": "Boyalı ve Baskılı Polyester Dokuma ve Örme Kumaşlar, Kadife Kumaşlar (Süet, Raşel)"
+      },
+      "rawFabric": {
+        "title": "Ham Kumaş",
+        "description": "Polyester Dokuma ve Örme Kumaşlar, Kadife Kumaşlar (Süet, Raşel)"
+      },
+      "digitalPrint": {
+        "title": "Dijital Baskı",
+        "description": "1,50 Mt.den 3,20 Mt. Ene kadar kağıda veya direkt kumaşa dijital baskı"
+      },
+      "transferPrint": {
+        "title": "Transfer Baskı",
+        "description": "1,50 Mt.den 3,20 Mt. Ene kadar transfer baskı"
+      },
+      "lamination": {
+        "title": "Laminasyon",
+        "description": "1,50 Mt.den 3,20 Mt. Ene kadar laminasyon"
+      }
+    }
   },
   "rug": {
     "categoryLabel": "Kategori",

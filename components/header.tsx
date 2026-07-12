@@ -15,8 +15,6 @@ export function Header({ locale }: { locale: Locale }) {
 
   const navLinks = [
     { href: "/" as const, label: t("home") },
-    { href: "/special-offers" as const, label: t("specialOffers") },
-    { href: "/new-arrivals" as const, label: t("newArrivals") },
     { href: "/contact" as const, label: t("contact") },
   ];
 

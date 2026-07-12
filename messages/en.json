@@ -22,14 +22,43 @@
     "specialOffersSubtitle": "Distinctive pieces with exclusive offers",
     "newArrivalsTitle": "New Arrivals",
     "newArrivalsSubtitle": "The latest additions to our gallery",
-    "latestTitle": "Latest Added Carpets",
-    "latestSubtitle": "Our most recent additions to the collection",
+    "latestTitle": "Latest Added",
+    "latestSubtitle": "Newest images added across the three collections",
     "searchTitle": "Search for Carpets",
     "searchSubtitle": "Find the perfect piece",
     "contactTitle": "Contact Us",
     "contactSubtitle": "We are here to help you",
     "viewAll": "View All",
+    "showMore": "Show more",
     "noItems": "No items to display at the moment."
+  },
+  "services": {
+    "title": "Our Services",
+    "ctaText": "Contact us for detailed information about our products and to get a price quote!",
+    "ctaButton": "Contact Information",
+    "brandSubtitle": "Print & Textile",
+    "items": {
+      "printedFabric": {
+        "title": "Printed Fabric",
+        "description": "Dyed and printed polyester woven and knitted fabrics, velvet fabrics (suede, raschel)"
+      },
+      "rawFabric": {
+        "title": "Raw Fabric",
+        "description": "Polyester woven and knitted fabrics, velvet fabrics (suede, raschel)"
+      },
+      "digitalPrint": {
+        "title": "Digital Printing",
+        "description": "Digital printing on paper or directly on fabric, widths from 1.50 m to 3.20 m"
+      },
+      "transferPrint": {
+        "title": "Transfer Printing",
+        "description": "Transfer printing, widths from 1.50 m to 3.20 m"
+      },
+      "lamination": {
+        "title": "Lamination",
+        "description": "Lamination, widths from 1.50 m to 3.20 m"
+      }
+    }
   },
   "rug": {
     "categoryLabel": "Category",

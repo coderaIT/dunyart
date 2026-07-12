@@ -119,18 +119,18 @@ body {
 .overlay-hero {
   background: linear-gradient(
     to bottom,
-    color-mix(in srgb, var(--color-scrim) 80%, transparent),
-    color-mix(in srgb, var(--color-scrim) 58%, transparent),
-    color-mix(in srgb, var(--color-scrim) 78%, transparent)
+    color-mix(in srgb, var(--color-scrim) 88%, transparent),
+    color-mix(in srgb, var(--color-scrim) 72%, transparent),
+    color-mix(in srgb, var(--color-scrim) 86%, transparent)
   );
 }
 
 html[data-theme="light"] .overlay-hero {
   background: linear-gradient(
     to bottom,
-    color-mix(in srgb, var(--color-scrim) 56%, transparent),
-    color-mix(in srgb, var(--color-scrim) 36%, transparent),
-    color-mix(in srgb, var(--color-scrim) 52%, transparent)
+    color-mix(in srgb, var(--color-scrim) 78%, transparent),
+    color-mix(in srgb, var(--color-scrim) 62%, transparent),
+    color-mix(in srgb, var(--color-scrim) 76%, transparent)
   );
 }
 

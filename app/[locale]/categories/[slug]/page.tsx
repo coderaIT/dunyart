@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { type Locale } from "@/i18n/routing";
 import { getCategoryBySlug } from "@/lib/queries";
 import { localizedName, localizedDescription } from "@/lib/utils";
-import { RugGrid, EmptyState } from "@/components/rug-grid";
+import { ExpandableRugGrid } from "@/components/expandable-rug-grid";
 
 type Props = {
   params: Promise<{ locale: Locale; slug: string }>;
@@ -61,11 +61,11 @@ export default async function CategoryPage({ params }: Props) {
       </section>
 
       <div className="container-page py-14">
-        {category.rugs.length > 0 ? (
-          <RugGrid rugs={category.rugs} locale={locale} />
-        ) : (
-          <EmptyState message={t("empty")} />
-        )}
+        <ExpandableRugGrid
+          rugs={category.rugs}
+          locale={locale}
+          emptyMessage={t("empty")}
+        />
       </div>
     </div>
   );

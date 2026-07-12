@@ -1,23 +1,23 @@
 import { defineRouting } from "next-intl/routing";
 
-export const locales = ["ar", "tr", "en"] as const;
+export const locales = ["tr", "ar", "en"] as const;
 export type Locale = (typeof locales)[number];
 
 export const localeDirections: Record<Locale, "rtl" | "ltr"> = {
-  ar: "rtl",
   tr: "ltr",
+  ar: "rtl",
   en: "ltr",
 };
 
 export const localeLabels: Record<Locale, string> = {
-  ar: "العربية",
   tr: "Türkçe",
+  ar: "العربية",
   en: "English",
 };
 
 export const routing = defineRouting({
   locales,
-  defaultLocale: "ar",
+  defaultLocale: "tr",
   localePrefix: "always",
   pathnames: {
     "/": "/",
@@ -33,6 +33,7 @@ export const routing = defineRouting({
     "/admin/categories/[id]": "/admin/categories/[id]",
     "/admin/rugs": "/admin/rugs",
     "/admin/rugs/new": "/admin/rugs/new",
+    "/admin/rugs/batch": "/admin/rugs/batch",
     "/admin/rugs/[id]": "/admin/rugs/[id]",
   },
 });

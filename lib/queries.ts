@@ -15,6 +15,21 @@ export async function getActiveCategories() {
   });
 }
 
+/** Active categories with their rugs (newest first) — for homepage sections. */
+export async function getCategoriesWithRugs() {
+  return prisma.category.findMany({
+    where: { isActive: true },
+    orderBy: [{ sortOrder: "asc" }, { createdAt: "desc" }],
+    include: {
+      rugs: {
+        where: { isActive: true },
+        orderBy: { createdAt: "desc" },
+        include: { ...rugImageInclude, category: true },
+      },
+    },
+  });
+}
+
 export async function getCategoryBySlug(slug: string) {
   return prisma.category.findUnique({
     where: { slug },

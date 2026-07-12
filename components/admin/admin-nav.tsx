@@ -6,7 +6,14 @@ import { Link, usePathname } from "@/i18n/navigation";
 const links = [
   { href: "/admin" as const, label: "لوحة التحكم", exact: true },
   { href: "/admin/categories" as const, label: "الأقسام" },
-  { href: "/admin/rugs" as const, label: "السجاد" },
+  {
+    href: "/admin/rugs" as const,
+    label: "السجاد",
+    match: (path: string) =>
+      path === "/admin/rugs" ||
+      (path.startsWith("/admin/rugs/") && !path.startsWith("/admin/rugs/batch")),
+  },
+  { href: "/admin/rugs/batch" as const, label: "رفع دفعة صور" },
 ];
 
 export function AdminNav() {
@@ -15,9 +22,12 @@ export function AdminNav() {
   return (
     <nav className="flex flex-col gap-1">
       {links.map((link) => {
-        const active = link.exact
-          ? pathname === link.href
-          : pathname.startsWith(link.href);
+        const active =
+          "exact" in link && link.exact
+            ? pathname === link.href
+            : "match" in link && link.match
+              ? link.match(pathname)
+              : pathname.startsWith(link.href);
         return (
           <Link
             key={link.href}

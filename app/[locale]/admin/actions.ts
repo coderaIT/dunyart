@@ -252,6 +252,58 @@ export async function deleteRug(id: string): Promise<Result> {
   return { ok: true, id };
 }
 
+/** Create one rug per image under a category (batch upload from dashboard). */
+export async function createRugsBatch(input: {
+  categoryId: string;
+  images: RugImageInput[];
+}): Promise<{ ok: true; count: number } | { ok: false; error: string }> {
+  if (!input.categoryId) return { ok: false, error: "يجب اختيار القسم" };
+  if (!input.images.length) return { ok: false, error: "أضف صورة واحدة على الأقل" };
+
+  const category = await prisma.category.findUnique({
+    where: { id: input.categoryId },
+  });
+  if (!category) return { ok: false, error: "القسم غير موجود" };
+
+  const existingCount = await prisma.rug.count({
+    where: { categoryId: input.categoryId },
+  });
+
+  for (let i = 0; i < input.images.length; i++) {
+    const img = input.images[i];
+    const n = existingCount + i + 1;
+    const nameAr = `${category.nameAr} ${n}`;
+    const nameTr = `${category.nameTr} ${n}`;
+    const nameEn = `${category.nameEn} ${n}`;
+    const slug = await uniqueSlug(nameEn, "rug");
+
+    await prisma.rug.create({
+      data: {
+        nameAr,
+        nameTr,
+        nameEn,
+        slug,
+        categoryId: input.categoryId,
+        isSpecialOffer: false,
+        isNewArrival: true,
+        isFeatured: false,
+        isActive: true,
+        images: {
+          create: {
+            imageUrl: img.imageUrl,
+            publicId: img.publicId,
+            sortOrder: 0,
+            isPrimary: true,
+          },
+        },
+      },
+    });
+  }
+
+  revalidateAll();
+  return { ok: true, count: input.images.length };
+}
+
 function normalizeImages(images: RugImageInput[]) {
   const sorted = [...images].sort((a, b) => a.sortOrder - b.sortOrder);
   const hasPrimary = sorted.some((i) => i.isPrimary);

@@ -1,17 +1,13 @@
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { type Locale } from "@/i18n/routing";
-import {
-  getActiveCategories,
-  getSpecialOffers,
-  getNewArrivals,
-  getLatestRugs,
-} from "@/lib/queries";
-import { CategoryCard } from "@/components/category-card";
-import { RugGrid } from "@/components/rug-grid";
+import { getCategoriesWithRugs, getLatestRugs } from "@/lib/queries";
+import { localizedName, localizedDescription } from "@/lib/utils";
+import { HeroSlider } from "@/components/hero-slider";
+import { ExpandableRugGrid } from "@/components/expandable-rug-grid";
 import { SectionHeader } from "@/components/section-header";
 import { SearchBox } from "@/components/search-box";
+import { ServicesSection } from "@/components/services-section";
 import { SITE } from "@/lib/site";
 
 export default async function HomePage({
@@ -24,37 +20,26 @@ export default async function HomePage({
 
   const t = await getTranslations("home");
   const tContact = await getTranslations("contact");
+  const tCategory = await getTranslations("category");
 
-  const [categories, offers, arrivals, latest] = await Promise.all([
-    getActiveCategories(),
-    getSpecialOffers(4),
-    getNewArrivals(4),
-    getLatestRugs(8),
+  const [categories, latest] = await Promise.all([
+    getCategoriesWithRugs(),
+    getLatestRugs(24),
   ]);
 
   return (
     <div className="animate-fade-up">
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-line">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="/hero.jpg"
-            alt=""
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-          <div className="overlay-hero absolute inset-0" />
-        </div>
+        <HeroSlider />
         <div className="container-page flex min-h-[28rem] flex-col items-center justify-center py-20 text-center sm:min-h-[32rem] sm:py-28">
-          <span className="mb-4 rounded-full border border-onimage/25 bg-scrim/35 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-onimage-soft backdrop-blur-sm">
+          <span className="mb-4 rounded-full border border-white/25 bg-scrim/55 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-white/90 backdrop-blur-sm">
             {t("categoriesSubtitle")}
           </span>
-          <h1 className="max-w-3xl text-4xl font-bold leading-tight text-onimage sm:text-6xl">
+          <h1 className="max-w-3xl text-4xl font-bold leading-tight text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] sm:text-6xl">
             {t("heroTitle")}
           </h1>
-          <p className="mt-6 max-w-2xl text-base text-onimage-muted sm:text-lg">
+          <p className="mt-6 max-w-2xl text-base text-white/90 [text-shadow:0_1px_14px_rgba(0,0,0,0.4)] sm:text-lg">
             {t("heroSubtitle")}
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
@@ -64,71 +49,45 @@ export default async function HomePage({
             >
               {t("browseCategories")}
             </a>
-            <Link
-              href="/new-arrivals"
-              className="rounded-full border border-onimage/35 px-7 py-3 font-semibold text-onimage transition-colors hover:border-onimage hover:bg-onimage/10"
+            <a
+              href="#latest"
+              className="rounded-full border border-white/50 bg-scrim/30 px-7 py-3 font-semibold text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-scrim/50"
             >
-              {t("newArrivalsTitle")}
-            </Link>
+              {t("latestTitle")}
+            </a>
           </div>
         </div>
       </section>
 
       <div className="container-page space-y-24 py-20">
-        {/* Categories */}
-        {categories.length > 0 && (
-          <section>
-            <SectionHeader
-              id="categories"
-              title={t("categoriesTitle")}
-              subtitle={t("categoriesSubtitle")}
-            />
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-              {categories.map((category) => (
-                <CategoryCard
-                  key={category.id}
-                  category={category}
+        {/* Three category sections */}
+        <div id="categories" className="scroll-mt-28 space-y-24">
+          {categories.map((category) => {
+            const title = localizedName(category, locale);
+            const subtitle =
+              localizedDescription(category, locale) ?? undefined;
+            return (
+              <section key={category.id} id={category.slug} className="scroll-mt-28">
+                <SectionHeader title={title} subtitle={subtitle} />
+                <ExpandableRugGrid
+                  rugs={category.rugs}
                   locale={locale}
+                  emptyMessage={tCategory("empty")}
                 />
-              ))}
-            </div>
-          </section>
-        )}
+              </section>
+            );
+          })}
+        </div>
 
-        {/* Special Offers */}
-        {offers.length > 0 && (
-          <section>
-            <SectionHeader
-              title={t("specialOffersTitle")}
-              subtitle={t("specialOffersSubtitle")}
-              viewAllHref="/special-offers"
-              viewAllLabel={t("viewAll")}
-            />
-            <RugGrid rugs={offers} locale={locale} />
-          </section>
-        )}
-
-        {/* New Arrivals */}
-        {arrivals.length > 0 && (
-          <section>
-            <SectionHeader
-              title={t("newArrivalsTitle")}
-              subtitle={t("newArrivalsSubtitle")}
-              viewAllHref="/new-arrivals"
-              viewAllLabel={t("viewAll")}
-            />
-            <RugGrid rugs={arrivals} locale={locale} />
-          </section>
-        )}
-
-        {/* Latest added */}
+        {/* Latest added across all categories */}
         {latest.length > 0 && (
           <section>
             <SectionHeader
+              id="latest"
               title={t("latestTitle")}
               subtitle={t("latestSubtitle")}
             />
-            <RugGrid rugs={latest} locale={locale} />
+            <ExpandableRugGrid rugs={latest} locale={locale} />
           </section>
         )}
 
@@ -175,6 +134,9 @@ export default async function HomePage({
             </Link>
           </div>
         </section>
+
+        {/* Services */}
+        <ServicesSection />
       </div>
     </div>
   );

@@ -44,16 +44,16 @@ export default async function AdminDashboard({
         ))}
       </div>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Link
-          href="/admin/categories/new"
-          className="group rounded-2xl border border-line bg-panel p-6 transition-colors hover:border-olive"
+          href="/admin/rugs/batch"
+          className="group rounded-2xl border border-rust/40 bg-panel p-6 transition-colors hover:border-rust"
         >
           <div className="text-lg font-semibold text-cream group-hover:text-sand">
-            + إضافة قسم جديد
+            + رفع صور دفعة واحدة
           </div>
           <p className="mt-1 text-sm text-muted">
-            أنشئ قسمًا بالاسم والوصف بثلاث لغات وصورة.
+            اختر قسمًا (عصري / كلاسيكي / عجمي) وارفع عدة صور معًا.
           </p>
         </Link>
         <Link
@@ -65,6 +65,17 @@ export default async function AdminDashboard({
           </div>
           <p className="mt-1 text-sm text-muted">
             أضف سجادة مع عدة صور وحدد الصورة الرئيسية والترتيب.
+          </p>
+        </Link>
+        <Link
+          href="/admin/categories"
+          className="group rounded-2xl border border-line bg-panel p-6 transition-colors hover:border-olive"
+        >
+          <div className="text-lg font-semibold text-cream group-hover:text-sand">
+            إدارة الأقسام
+          </div>
+          <p className="mt-1 text-sm text-muted">
+            الأقسام الثلاثة: عصري، كلاسيكي، عجمي — مع الترجمات.
           </p>
         </Link>
       </div>

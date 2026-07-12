@@ -1,18 +1,20 @@
+"use client";
+
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { type Locale } from "@/i18n/routing";
 import { localizedName } from "@/lib/utils";
 import type { RugWithImages } from "@/lib/queries";
 
-export async function RugCard({
+export function RugCard({
   rug,
   locale,
 }: {
   rug: RugWithImages;
   locale: Locale;
 }) {
-  const t = await getTranslations("rug");
+  const t = useTranslations("rug");
   const name = localizedName(rug, locale);
   const primary = rug.images[0];
   const categoryName = localizedName(rug.category, locale);

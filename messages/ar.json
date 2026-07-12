@@ -22,14 +22,43 @@
     "specialOffersSubtitle": "قطع مميزة بعروض حصرية",
     "newArrivalsTitle": "وصل حديثًا",
     "newArrivalsSubtitle": "أحدث الإضافات إلى معرضنا",
-    "latestTitle": "أحدث السجاد المضاف",
-    "latestSubtitle": "آخر ما أضفناه إلى المجموعة",
+    "latestTitle": "أحدث المضاف",
+    "latestSubtitle": "آخر الصور المضافة إلى الأقسام الثلاثة",
     "searchTitle": "ابحث عن السجاد",
     "searchSubtitle": "اعثر على القطعة المثالية",
     "contactTitle": "تواصل معنا",
     "contactSubtitle": "نحن هنا لمساعدتك",
     "viewAll": "عرض الكل",
+    "showMore": "عرض المزيد",
     "noItems": "لا توجد عناصر لعرضها حاليًا."
+  },
+  "services": {
+    "title": "خدماتنا",
+    "ctaText": "تواصل معنا للحصول على معلومات تفصيلية عن منتجاتنا وعرض الأسعار!",
+    "ctaButton": "معلومات التواصل",
+    "brandSubtitle": "طباعة ونسيج",
+    "items": {
+      "printedFabric": {
+        "title": "أقمشة مطبوعة",
+        "description": "أقمشة بوليستر منسوجة ومحبوكة مصبوغة ومطبوعة، أقمشة مخملية (سويد، راشيل)"
+      },
+      "rawFabric": {
+        "title": "أقمشة خام",
+        "description": "أقمشة بوليستر منسوجة ومحبوكة، أقمشة مخملية (سويد، راشيل)"
+      },
+      "digitalPrint": {
+        "title": "طباعة رقمية",
+        "description": "طباعة رقمية على الورق أو مباشرة على القماش بعرض من 1.50 متر إلى 3.20 متر"
+      },
+      "transferPrint": {
+        "title": "طباعة ترانسفر",
+        "description": "طباعة ترانسفر بعرض من 1.50 متر إلى 3.20 متر"
+      },
+      "lamination": {
+        "title": "تصفيح",
+        "description": "تصفيح بعرض من 1.50 متر إلى 3.20 متر"
+      }
+    }
   },
   "rug": {
     "categoryLabel": "القسم",

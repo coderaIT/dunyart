@@ -28,12 +28,20 @@ export default async function AdminRugsPage({
           <h1 className="text-2xl font-bold text-cream">السجاد</h1>
           <p className="mt-1 text-sm text-muted">{rugs.length} سجادة</p>
         </div>
-        <Link
-          href="/admin/rugs/new"
-          className="rounded-full bg-rust px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-rust-soft"
-        >
-          + إضافة سجادة
-        </Link>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href="/admin/rugs/batch"
+            className="rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-cream transition-colors hover:border-olive hover:bg-panel"
+          >
+            رفع دفعة صور
+          </Link>
+          <Link
+            href="/admin/rugs/new"
+            className="rounded-full bg-rust px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-rust-soft"
+          >
+            + إضافة سجادة
+          </Link>
+        </div>
       </div>
 
       {rugs.length === 0 ? (
