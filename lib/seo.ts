@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { locales, routing, type Locale } from "@/i18n/routing";
 import { SITE } from "@/lib/site";
-
+//
 const OG_LOCALE: Record<Locale, string> = {
   tr: "tr_TR",
   ar: "ar_SA",
