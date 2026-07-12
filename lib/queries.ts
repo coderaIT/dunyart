@@ -116,6 +116,21 @@ export async function searchRugs(query: string) {
   });
 }
 
+/** Lightweight slugs for sitemap generation. */
+export async function getSitemapEntities() {
+  const [categories, rugs] = await Promise.all([
+    prisma.category.findMany({
+      where: { isActive: true },
+      select: { slug: true, updatedAt: true },
+    }),
+    prisma.rug.findMany({
+      where: { isActive: true },
+      select: { slug: true, updatedAt: true },
+    }),
+  ]);
+  return { categories, rugs };
+}
+
 export type RugWithImages = Awaited<ReturnType<typeof getLatestRugs>>[number];
 export type CategoryWithCount = Awaited<
   ReturnType<typeof getActiveCategories>

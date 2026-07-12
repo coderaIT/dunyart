@@ -4,6 +4,7 @@ import { type Locale } from "@/i18n/routing";
 import { searchRugs } from "@/lib/queries";
 import { RugGrid, EmptyState } from "@/components/rug-grid";
 import { SearchBox } from "@/components/search-box";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: Locale }>;
@@ -13,7 +14,12 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "search" });
-  return { title: t("title") };
+  return buildPageMetadata({
+    locale,
+    path: "/search",
+    title: t("title"),
+    description: t("startTyping"),
+  });
 }
 
 export default async function SearchPage({ params, searchParams }: Props) {

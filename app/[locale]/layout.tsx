@@ -7,6 +7,9 @@ import { Header } from "@/components/header";
 import { LocationMap } from "@/components/location-map";
 import { Footer } from "@/components/footer";
 import { ThemeScript } from "@/components/theme-script";
+import { JsonLd, localBusinessJsonLd } from "@/components/json-ld";
+import { buildPageMetadata, getSiteUrl } from "@/lib/seo";
+import { SITE } from "@/lib/site";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -20,12 +23,34 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "site" });
+
+  const page = buildPageMetadata({
+    locale,
+    path: "/",
+    description: t("description"),
+  });
+
   return {
+    metadataBase: new URL(getSiteUrl()),
     title: {
       default: `${t("name")} — ${t("tagline")}`,
       template: `%s | ${t("name")}`,
     },
-    description: t("tagline"),
+    description: t("description"),
+    keywords: t("keywords")
+      .split(",")
+      .map((k) => k.trim())
+      .filter(Boolean),
+    applicationName: SITE.brandName,
+    authors: [{ name: SITE.brandName, url: getSiteUrl() }],
+    creator: SITE.brandName,
+    publisher: SITE.brandName,
+    category: "shopping",
+    formatDetection: {
+      telephone: true,
+      email: true,
+      address: true,
+    },
     icons: {
       icon: [
         { url: "/icon.png?v=2", type: "image/png", sizes: "512x512" },
@@ -33,6 +58,17 @@ export async function generateMetadata({
       ],
       apple: [{ url: "/apple-icon.png?v=2", sizes: "512x512" }],
       shortcut: ["/icon.png?v=2"],
+    },
+    ...page,
+    openGraph: {
+      ...page.openGraph,
+      title: `${t("name")} — ${t("tagline")}`,
+      description: t("description"),
+    },
+    twitter: {
+      ...page.twitter,
+      title: `${t("name")} — ${t("tagline")}`,
+      description: t("description"),
     },
   };
 }
@@ -52,11 +88,13 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const dir = localeDirections[locale as Locale];
+  const t = await getTranslations({ locale, namespace: "site" });
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col bg-ink text-cream">
         <ThemeScript />
+        <JsonLd data={localBusinessJsonLd(t("name"), t("description"))} />
         <NextIntlClientProvider>
           <Header locale={locale as Locale} />
           <main className="flex-1">{children}</main>

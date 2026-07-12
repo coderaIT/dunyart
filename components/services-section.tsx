@@ -24,7 +24,7 @@ export async function ServicesSection() {
           </p>
           <Link
             href="/contact"
-            className="shrink-0 rounded-full bg-cream px-6 py-2.5 text-center text-sm font-semibold text-onaccent transition-colors hover:bg-cream-soft"
+            className="shrink-0 rounded-full bg-cream px-6 py-2.5 text-center text-sm font-semibold text-ink transition-colors hover:bg-cream-soft"
           >
             {t("ctaButton")}
           </Link>

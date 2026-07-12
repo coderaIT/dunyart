@@ -7,7 +7,17 @@ import { getRugBySlug, getRelatedRugs } from "@/lib/queries";
 import { localizedName, localizedDescription } from "@/lib/utils";
 import { RugGallery } from "@/components/rug-gallery";
 import { RugGrid } from "@/components/rug-grid";
+import {
+  JsonLd,
+  breadcrumbJsonLd,
+  productJsonLd,
+} from "@/components/json-ld";
 import { SITE } from "@/lib/site";
+import {
+  absoluteLocaleUrl,
+  buildPageMetadata,
+  toAbsoluteImage,
+} from "@/lib/seo";
 
 type Props = {
   params: Promise<{ locale: Locale; slug: string }>;
@@ -16,8 +26,22 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const rug = await getRugBySlug(slug);
-  if (!rug) return {};
-  return { title: localizedName(rug, locale) };
+  if (!rug || !rug.isActive) return { robots: { index: false, follow: false } };
+
+  const name = localizedName(rug, locale);
+  const description =
+    localizedDescription(rug, locale) ||
+    `${name} | ${SITE.brandName}`;
+  const image = rug.images[0]?.imageUrl;
+
+  return buildPageMetadata({
+    locale,
+    path: `/rugs/${slug}`,
+    title: name,
+    description,
+    images: [image, "/logo.png"],
+    type: "article",
+  });
 }
 
 export default async function RugPage({ params }: Props) {
@@ -26,6 +50,7 @@ export default async function RugPage({ params }: Props) {
 
   const t = await getTranslations("rug");
   const tContact = await getTranslations("contact");
+  const tSite = await getTranslations("site");
   const rug = await getRugBySlug(slug);
 
   if (!rug || !rug.isActive) {
@@ -36,6 +61,8 @@ export default async function RugPage({ params }: Props) {
   const description = localizedDescription(rug, locale);
   const categoryName = localizedName(rug.category, locale);
   const related = await getRelatedRugs(rug.categoryId, rug.id);
+  const pageUrl = absoluteLocaleUrl(locale, `/rugs/${slug}`);
+  const image = toAbsoluteImage(rug.images[0]?.imageUrl);
 
   const badges = [
     rug.isSpecialOffer && { label: t("specialOffer"), cls: "bg-rust text-white" },
@@ -45,6 +72,33 @@ export default async function RugPage({ params }: Props) {
 
   return (
     <div className="container-page animate-fade-up py-10">
+      <JsonLd
+        data={productJsonLd({
+          name,
+          description,
+          image,
+          url: pageUrl,
+          category: categoryName,
+          brandName: tSite("name"),
+        })}
+      />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          {
+            name: tSite("name"),
+            url: absoluteLocaleUrl(locale, "/"),
+          },
+          {
+            name: categoryName,
+            url: absoluteLocaleUrl(
+              locale,
+              `/categories/${rug.category.slug}`
+            ),
+          },
+          { name, url: pageUrl },
+        ])}
+      />
+
       <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted">
         <Link
           href={{ pathname: "/categories/[slug]", params: { slug: rug.category.slug } }}

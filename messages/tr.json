@@ -1,7 +1,9 @@
 {
   "site": {
     "name": "Dünya Art",
-    "tagline": "Sanatsal Lüks Halılar"
+    "tagline": "Sanatsal Lüks Halılar",
+    "description": "Dünya Art — Bursa Osmangazi’de sanatsal ve lüks halılar, baskılı kumaş, dijital baskı ve tekstil hizmetleri. El yapımı ve sanat koleksiyonlarını keşfedin.",
+    "keywords": "halı, sanatsal halı, lüks halı, Dünya Art, Bursa, Osmangazi, tekstil, dijital baskı, baskılı kumaş, carpet, rug"
   },
   "nav": {
     "home": "Ana Sayfa",

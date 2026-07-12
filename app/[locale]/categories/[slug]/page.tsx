@@ -6,6 +6,8 @@ import { type Locale } from "@/i18n/routing";
 import { getCategoryBySlug } from "@/lib/queries";
 import { localizedName, localizedDescription } from "@/lib/utils";
 import { ExpandableRugGrid } from "@/components/expandable-rug-grid";
+import { buildPageMetadata } from "@/lib/seo";
+import { SITE } from "@/lib/site";
 
 type Props = {
   params: Promise<{ locale: Locale; slug: string }>;
@@ -14,8 +16,22 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const category = await getCategoryBySlug(slug);
-  if (!category) return {};
-  return { title: localizedName(category, locale) };
+  if (!category || !category.isActive) {
+    return { robots: { index: false, follow: false } };
+  }
+
+  const name = localizedName(category, locale);
+  const description =
+    localizedDescription(category, locale) ||
+    `${name} | ${SITE.brandName}`;
+
+  return buildPageMetadata({
+    locale,
+    path: `/categories/${slug}`,
+    title: name,
+    description,
+    images: [category.imageUrl, "/logo.png"],
+  });
 }
 
 export default async function CategoryPage({ params }: Props) {

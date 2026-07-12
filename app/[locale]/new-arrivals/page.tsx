@@ -3,13 +3,19 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { type Locale } from "@/i18n/routing";
 import { getNewArrivals } from "@/lib/queries";
 import { RugGrid, EmptyState } from "@/components/rug-grid";
+import { buildPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "home" });
-  return { title: t("newArrivalsTitle") };
+  return buildPageMetadata({
+    locale,
+    path: "/new-arrivals",
+    title: t("newArrivalsTitle"),
+    description: t("newArrivalsSubtitle"),
+  });
 }
 
 export default async function NewArrivalsPage({ params }: Props) {

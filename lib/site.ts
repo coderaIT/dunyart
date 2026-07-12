@@ -4,6 +4,9 @@ const address =
 const mapQuery = encodeURIComponent(address);
 
 export const SITE = {
+  /** Fallback public origin when NEXT_PUBLIC_SITE_URL is not set. */
+  url: "https://dunyaart.com",
+  brandName: "Dünya Art",
   phone: "0535 245 80 88",
   phoneTel: "+905352458088",
   whatsapp: "905352458088",
