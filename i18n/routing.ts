@@ -18,6 +18,7 @@ export const localeLabels: Record<Locale, string> = {
 export const routing = defineRouting({
   locales,
   defaultLocale: "tr",
+  localeDetection: false,
   localePrefix: "always",
   pathnames: {
     "/": "/",
