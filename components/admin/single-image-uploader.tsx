@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useRef, useState } from "react";
 import { uploadFiles, deleteUploadedFile } from "@/lib/upload-client";
+import { MediaImage } from "@/components/media-image";
 
 export type SingleImageValue = { imageUrl: string; publicId: string } | null;
 
@@ -51,7 +51,7 @@ export function SingleImageUploader({
       {value ? (
         <div className="relative w-full max-w-xs overflow-hidden rounded-xl border border-line">
           <div className="relative aspect-4/3">
-            <Image
+            <MediaImage
               src={value.imageUrl}
               alt=""
               fill
@@ -94,7 +94,14 @@ export function SingleImageUploader({
 
 function UploadIcon() {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+    >
       <path d="M12 16V4m0 0 4 4m-4-4L8 8" />
       <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
     </svg>

@@ -5,14 +5,22 @@ import { unlink } from "node:fs/promises";
 import path from "node:path";
 import { prisma } from "@/lib/prisma";
 import { slugify, randomSuffix } from "@/lib/utils";
+import {
+  UPLOAD_DIR,
+  LEGACY_UPLOAD_DIR,
+  safePublicId,
+} from "@/lib/upload-dir";
 
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
+const UPLOAD_DIRS = [UPLOAD_DIR, LEGACY_UPLOAD_DIR];
 
 async function deleteFile(publicId: string) {
-  try {
-    await unlink(path.join(UPLOAD_DIR, path.basename(publicId)));
-  } catch {
-    // ignore missing files
+  const safe = safePublicId(publicId);
+  for (const dir of UPLOAD_DIRS) {
+    try {
+      await unlink(path.join(dir, safe));
+    } catch {
+      // ignore missing files
+    }
   }
 }
 
@@ -302,6 +310,28 @@ export async function createRugsBatch(input: {
 
   revalidateAll();
   return { ok: true, count: input.images.length };
+}
+
+export async function deleteRugsBatch(
+  ids: string[]
+): Promise<{ ok: true; count: number } | { ok: false; error: string }> {
+  if (!ids.length) return { ok: false, error: "لم يتم اختيار أي عنصر" };
+
+  const rugs = await prisma.rug.findMany({
+    where: { id: { in: ids } },
+    include: { images: true },
+  });
+
+  for (const rug of rugs) {
+    for (const img of rug.images) await deleteFile(img.publicId);
+  }
+
+  const result = await prisma.rug.deleteMany({
+    where: { id: { in: ids } },
+  });
+
+  revalidateAll();
+  return { ok: true, count: result.count };
 }
 
 function normalizeImages(images: RugImageInput[]) {

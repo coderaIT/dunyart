@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { type Locale } from "@/i18n/routing";
 import { localizedName } from "@/lib/utils";
 import type { RugWithImages } from "@/lib/queries";
+import { MediaImage } from "./media-image";
 
 export function RugCard({
   rug,
@@ -26,7 +27,7 @@ export function RugCard({
     >
       <div className="relative aspect-4/3 overflow-hidden bg-ink-soft">
         {primary ? (
-          <Image
+          <MediaImage
             src={primary.imageUrl}
             alt={name}
             fill

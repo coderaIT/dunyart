@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useRef, useState } from "react";
 import { uploadFiles, deleteUploadedFile } from "@/lib/upload-client";
 import type { RugImageInput } from "@/app/[locale]/admin/actions";
+import { MediaImage } from "@/components/media-image";
 
 export function MultiImageUploader({
   value,
@@ -84,7 +84,7 @@ export function MultiImageUploader({
             }`}
           >
             <div className="relative aspect-square">
-              <Image
+              <MediaImage
                 src={img.imageUrl}
                 alt=""
                 fill

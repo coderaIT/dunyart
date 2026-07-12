@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { MediaImage } from "./media-image";
 
 type GalleryImage = {
   id: string;
@@ -36,7 +37,7 @@ export function RugGallery({
   return (
     <div className="flex flex-col gap-4">
       <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-line bg-panel">
-        <Image
+        <MediaImage
           src={current.imageUrl}
           alt={alt}
           fill
@@ -59,7 +60,7 @@ export function RugGallery({
                   : "border-line hover:border-olive"
               }`}
             >
-              <Image
+              <MediaImage
                 src={img.imageUrl}
                 alt=""
                 fill

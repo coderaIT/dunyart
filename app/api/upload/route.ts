@@ -2,11 +2,22 @@ import { NextResponse } from "next/server";
 import { writeFile, unlink, mkdir } from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
+import {
+  UPLOAD_DIR,
+  LEGACY_UPLOAD_DIR,
+  mediaUrl,
+  safePublicId,
+} from "@/lib/upload-dir";
 
 export const runtime = "nodejs";
 
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
-const ALLOWED = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/avif"];
+const ALLOWED = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+  "image/avif",
+];
 const MAX_SIZE = 8 * 1024 * 1024; // 8 MB
 
 function extFor(type: string) {
@@ -26,7 +37,9 @@ function extFor(type: string) {
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const files = formData.getAll("files").filter((f): f is File => f instanceof File);
+  const files = formData
+    .getAll("files")
+    .filter((f): f is File => f instanceof File);
 
   if (files.length === 0) {
     return NextResponse.json({ error: "No files provided" }, { status: 400 });
@@ -53,7 +66,7 @@ export async function POST(request: Request) {
     const buffer = Buffer.from(await file.arrayBuffer());
     const publicId = `${crypto.randomUUID()}${extFor(file.type)}`;
     await writeFile(path.join(UPLOAD_DIR, publicId), buffer);
-    uploaded.push({ imageUrl: `/uploads/${publicId}`, publicId });
+    uploaded.push({ imageUrl: mediaUrl(publicId), publicId });
   }
 
   return NextResponse.json({ files: uploaded });
@@ -65,12 +78,13 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "Missing publicId" }, { status: 400 });
   }
 
-  // Prevent path traversal.
-  const safe = path.basename(publicId);
-  try {
-    await unlink(path.join(UPLOAD_DIR, safe));
-  } catch {
-    // Ignore if file already gone.
+  const safe = safePublicId(publicId);
+  for (const dir of [UPLOAD_DIR, LEGACY_UPLOAD_DIR]) {
+    try {
+      await unlink(path.join(dir, safe));
+    } catch {
+      // ignore missing
+    }
   }
   return NextResponse.json({ ok: true });
 }
