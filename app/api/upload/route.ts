@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { writeFile, unlink, mkdir } from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 import {
   UPLOAD_DIR,
   LEGACY_UPLOAD_DIR,
@@ -10,6 +11,10 @@ import {
 } from "@/lib/upload-dir";
 
 export const runtime = "nodejs";
+
+async function unauthorized() {
+  return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+}
 
 const ALLOWED = [
   "image/jpeg",
@@ -36,6 +41,8 @@ function extFor(type: string) {
 }
 
 export async function POST(request: Request) {
+  if (!(await isAdminAuthenticated())) return unauthorized();
+
   const formData = await request.formData();
   const files = formData
     .getAll("files")
@@ -73,6 +80,8 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+  if (!(await isAdminAuthenticated())) return unauthorized();
+
   const { publicId } = await request.json().catch(() => ({ publicId: null }));
   if (!publicId || typeof publicId !== "string") {
     return NextResponse.json({ error: "Missing publicId" }, { status: 400 });

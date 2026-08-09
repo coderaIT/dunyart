@@ -24,7 +24,7 @@ export function LanguageSwitcher({ current }: { current: Locale }) {
 
   return (
     <div
-      className={`inline-flex items-center rounded-full border border-line bg-ink-soft p-0.5 text-sm ${
+      className={`inline-flex items-center gap-1 text-sm ${
         isPending ? "opacity-60" : ""
       }`}
     >
@@ -36,8 +36,10 @@ export function LanguageSwitcher({ current }: { current: Locale }) {
             type="button"
             onClick={() => switchTo(locale)}
             aria-current={active ? "true" : undefined}
-            className={`rounded-full px-3 py-1 font-medium transition-colors ${
-              active ? "bg-rust text-white shadow" : "text-muted hover:text-cream"
+            className={`border-b-2 px-2.5 py-1 font-medium transition-colors ${
+              active
+                ? "border-rust text-cream"
+                : "border-transparent text-muted hover:text-cream"
             }`}
           >
             {localeLabels[locale]}

@@ -54,7 +54,12 @@ npm run dev
 
 ```
 DATABASE_URL="file:./dev.db"
+ADMIN_USERNAME="admin"
+ADMIN_PASSWORD="your-password"
+ADMIN_SESSION_SECRET="long-random-secret"
 ```
+
+لوحة التحكم محمية بـ `ADMIN_USERNAME` و `ADMIN_PASSWORD` (صفحة الدخول: `/ar/admin/login`).
 
 بيانات التواصل (هاتف/واتساب/بريد) قابلة للتعديل في `lib/site.ts`.
 

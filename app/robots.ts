@@ -13,6 +13,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: locales.flatMap((locale) => [
           `/${locale}/admin`,
           `/${locale}/admin/`,
+          `/${locale}/admin/login`,
         ]),
       },
     ],

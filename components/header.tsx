@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { type Locale } from "@/i18n/routing";
 import { LanguageSwitcher } from "./language-switcher";
 import { ThemeToggle } from "./theme-toggle";
@@ -11,12 +11,21 @@ import { ThemeToggle } from "./theme-toggle";
 export function Header({ locale }: { locale: Locale }) {
   const t = useTranslations("nav");
   const tSite = useTranslations("site");
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   const navLinks = [
     { href: "/" as const, label: t("home") },
     { href: "/contact" as const, label: t("contact") },
   ];
+
+  function navClass(active: boolean) {
+    return `border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
+      active
+        ? "border-rust text-cream"
+        : "border-transparent text-muted hover:text-cream"
+    }`;
+  }
 
   return (
     <header className="site-header sticky top-0 z-50 border-b border-line/70 bg-ink/90 backdrop-blur-md">
@@ -47,14 +56,14 @@ export function Header({ locale }: { locale: Locale }) {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-panel hover:text-cream"
+              className={navClass(pathname === link.href)}
             >
               {link.label}
             </Link>
           ))}
           <a
             href={`/${locale}#categories`}
-            className="rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-panel hover:text-cream"
+            className={navClass(false)}
           >
             {t("categories")}
           </a>
@@ -91,7 +100,9 @@ export function Header({ locale }: { locale: Locale }) {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-4 py-3 text-base font-medium text-cream transition-colors hover:bg-panel"
+                className={`rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-panel ${
+                  pathname === link.href ? "text-cream" : "text-muted"
+                }`}
               >
                 {link.label}
               </Link>
@@ -99,7 +110,7 @@ export function Header({ locale }: { locale: Locale }) {
             <a
               href={`/${locale}#categories`}
               onClick={() => setOpen(false)}
-              className="rounded-lg px-4 py-3 text-base font-medium text-cream transition-colors hover:bg-panel"
+              className="rounded-lg px-4 py-3 text-base font-medium text-muted transition-colors hover:bg-panel"
             >
               {t("categories")}
             </a>

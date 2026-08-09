@@ -29,6 +29,7 @@ export const routing = defineRouting({
     "/categories/[slug]": "/categories/[slug]",
     "/rugs/[slug]": "/rugs/[slug]",
     "/admin": "/admin",
+    "/admin/login": "/admin/login",
     "/admin/categories": "/admin/categories",
     "/admin/categories/new": "/admin/categories/new",
     "/admin/categories/[id]": "/admin/categories/[id]",

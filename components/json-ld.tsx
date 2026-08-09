@@ -35,9 +35,9 @@ export function localBusinessJsonLd(localeName: string, description: string) {
     },
     geo: {
       "@type": "GeoCoordinates",
-      // Alaşar OSB / Osmangazi area — approximate
-      latitude: 40.2669,
-      longitude: 29.0145,
+      // 7. Asma Sk. No:9, Alaşarköy / Osmangazi / Bursa
+      latitude: SITE.lat,
+      longitude: SITE.lng,
     },
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",

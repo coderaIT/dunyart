@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { AdminNav, AdminBrand } from "@/components/admin/admin-nav";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 export const metadata: Metadata = {
   robots: {
@@ -19,6 +20,16 @@ export default async function AdminLayout({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const authenticated = await isAdminAuthenticated();
+
+  if (!authenticated) {
+    return (
+      <div dir="rtl" className="container-page flex min-h-[70vh] items-center justify-center py-12 text-cream">
+        {children}
+      </div>
+    );
+  }
 
   return (
     <div dir="rtl" className="container-page py-8 text-cream">

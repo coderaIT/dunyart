@@ -91,7 +91,7 @@ export default async function LocaleLayout({
   const t = await getTranslations({ locale, namespace: "site" });
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning>
+    <html lang={locale} dir={dir} data-theme="light" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col bg-ink text-cream">
         <ThemeScript />
         <JsonLd data={localBusinessJsonLd(t("name"), t("description"))} />

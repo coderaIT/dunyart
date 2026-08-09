@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Link, usePathname } from "@/i18n/navigation";
+import { logoutAdmin } from "@/app/[locale]/admin/auth-actions";
 
 const links = [
   { href: "/admin" as const, label: "لوحة التحكم", exact: true },
@@ -48,6 +49,14 @@ export function AdminNav() {
       >
         ← العودة إلى الموقع
       </Link>
+      <form action={logoutAdmin}>
+        <button
+          type="submit"
+          className="mt-1 w-full rounded-lg px-4 py-2.5 text-start text-sm font-medium text-muted transition-colors hover:bg-panel hover:text-cream"
+        >
+          تسجيل الخروج
+        </button>
+      </form>
     </nav>
   );
 }

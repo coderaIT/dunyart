@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { unlink } from "node:fs/promises";
 import path from "node:path";
 import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/admin-auth";
 import { slugify, randomSuffix } from "@/lib/utils";
 import {
   UPLOAD_DIR,
@@ -93,6 +94,7 @@ function validateNames(input: { nameAr: string; nameTr: string; nameEn: string }
 /* ---------------- Categories ---------------- */
 
 export async function createCategory(input: CategoryInput): Promise<Result> {
+  await requireAdmin();
   const err = validateNames(input);
   if (err) return { ok: false, error: err };
 
@@ -121,6 +123,7 @@ export async function updateCategory(
   id: string,
   input: CategoryInput
 ): Promise<Result> {
+  await requireAdmin();
   const err = validateNames(input);
   if (err) return { ok: false, error: err };
 
@@ -156,6 +159,7 @@ export async function updateCategory(
 }
 
 export async function deleteCategory(id: string): Promise<Result> {
+  await requireAdmin();
   const count = await prisma.rug.count({ where: { categoryId: id } });
   if (count > 0) {
     return {
@@ -174,6 +178,7 @@ export async function deleteCategory(id: string): Promise<Result> {
 /* ---------------- Rugs ---------------- */
 
 export async function createRug(input: RugInput): Promise<Result> {
+  await requireAdmin();
   const err = validateNames(input);
   if (err) return { ok: false, error: err };
   if (!input.categoryId) return { ok: false, error: "يجب اختيار القسم" };
@@ -205,6 +210,7 @@ export async function createRug(input: RugInput): Promise<Result> {
 }
 
 export async function updateRug(id: string, input: RugInput): Promise<Result> {
+  await requireAdmin();
   const err = validateNames(input);
   if (err) return { ok: false, error: err };
   if (!input.categoryId) return { ok: false, error: "يجب اختيار القسم" };
@@ -247,6 +253,7 @@ export async function updateRug(id: string, input: RugInput): Promise<Result> {
 }
 
 export async function deleteRug(id: string): Promise<Result> {
+  await requireAdmin();
   const rug = await prisma.rug.findUnique({
     where: { id },
     include: { images: true },
@@ -265,6 +272,7 @@ export async function createRugsBatch(input: {
   categoryId: string;
   images: RugImageInput[];
 }): Promise<{ ok: true; count: number } | { ok: false; error: string }> {
+  await requireAdmin();
   if (!input.categoryId) return { ok: false, error: "يجب اختيار القسم" };
   if (!input.images.length) return { ok: false, error: "أضف صورة واحدة على الأقل" };
 
@@ -315,6 +323,7 @@ export async function createRugsBatch(input: {
 export async function deleteRugsBatch(
   ids: string[]
 ): Promise<{ ok: true; count: number } | { ok: false; error: string }> {
+  await requireAdmin();
   if (!ids.length) return { ok: false, error: "لم يتم اختيار أي عنصر" };
 
   const rugs = await prisma.rug.findMany({

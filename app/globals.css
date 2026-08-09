@@ -34,9 +34,9 @@
   --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
-/* Dark theme is the default/base. */
+/* Dark tokens live in @theme; light is the default via data-theme="light". */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 /* Light theme: surfaces + text remapped; accents and overlay tokens stay put. */
@@ -54,6 +54,10 @@ html[data-theme="light"] {
   --color-muted: #7a6e5a;
 
   --color-olive-soft: #5c6838;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 html {
