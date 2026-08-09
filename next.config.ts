@@ -1,7 +1,10 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
+  // Avoid picking /var/www as root when a lockfile exists above the app.
+  outputFileTracingRoot: path.join(__dirname),
   serverExternalPackages: ["@prisma/client", "prisma"],
   images: {
     localPatterns: [
